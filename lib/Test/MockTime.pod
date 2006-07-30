@@ -19,6 +19,14 @@ Test::MockTime - Replaces actual time with simulated time
 
   # do some more tests depending on time staying at the current actual time
 
+  Test::MockTime::set_absolute_time('1970-01-01T00:00:00Z');
+
+  # do some tests depending on time starting at Unix epoch time
+
+  Test::MockTime::set_fixed_time('01/01/1970 00:00:00', '%m/%d/%Y %H:%M:%S');
+
+  # do some tests depending on time staying at the Unix epoch time
+
   Test::MockTime::restore();
 
   # resume normal service
@@ -33,11 +41,12 @@ calls to gmtime,time or localtime.
 
 =head1 Functions
 
-=item set_absolute_time($time)
+=item set_absolute_time
 
-takes as an argument an absolute time (for example, if 0 is supplied, the
-absolute time will be the epoch), and calculates the offset to allow 
-subsequent calls to time,gmtime and localtime to reflect this.
+If given a single, numeric argument, the argument is an absolute time (for
+example, if 0 is supplied, the absolute time will be the epoch), and
+calculates the offset to allow subsequent calls to time, gmtime and localtime
+to reflect this.
 
 for example, in the following code
 
@@ -47,6 +56,21 @@ for example, in the following code
   my ($end) = time;
 
 The $end variable should contain 2 seconds past the epoch;
+
+If given two arguments, the first argument is taken to be an absolute time in
+some string format (for example, "01/01/1970 00:00:00").  The second argument
+is taken to be a C<strptime> format string (for example, "%m/%d/%Y %H:%M:%S").
+If a single argument is given, but that argument is not numeric, a
+C<strptime> format string of "%Y-%m-%dT%H:%M:%SZ" is assumed.
+
+for example, in the following code
+
+  Time::Mock::set_absolute_time('1970-01-01T00:00:00Z');
+  my ($start) = time;
+  sleep 2;
+  my ($end) = time;
+
+The $end variable should contain 2 seconds past the Unix epoch;
 
 =item set_relative_time($relative)
 
@@ -65,11 +89,11 @@ for example, in the following code
 The $end variable should contain either the same or very similar values to the
 $start variable.
 
-=item set_fixed_time($time)
+=item set_fixed_time
 
-takes as an argument an absolute time (for example, if 0 is supplied, the
-absolute time will be the epoch).  All subsequent calls to gmtime, localtime and
-time will return this value.
+If given a single, numeric argument, the argument is an absolute time (for
+example, if 0 is supplied, the absolute time will be the epoch).  All
+subsequent calls to gmtime, localtime and time will return this value.
 
 for example, in the following code
 
@@ -79,6 +103,12 @@ for example, in the following code
   my ($end) = time;
 
 the $end variable and the $start variable will contain the same results
+
+If given two arguments, the first argument is taken to be an absolute time in
+some string format (for example, "01/01/1970 00:00:00").  The second argument
+is taken to be a C<strptime> format string (for example, "%m/%d/%Y %H:%M:%S").
+If a single argument is given, but that argument is not numeric, a
+C<strptime> format string of "%Y-%m-%dT%H:%M:%SZ" is assumed.
 
 =item restore()
 

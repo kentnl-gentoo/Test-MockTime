@@ -3,7 +3,8 @@ package Test::MockTime;
 use strict;
 use warnings;
 use Carp();
-our ($VERSION) = '0.02';
+use Time::Piece();
+our ($VERSION) = '0.03';
 our ($offset) = 0;
 our ($fixed) = undef;
 
@@ -14,30 +15,40 @@ BEGIN {
 }
 
 sub set_relative_time {
-	unless (@_ == 1) {
-		if ($^W) {
-			Carp::carp("Test::MockTime::set_relative_time called incorrectly\n");
-		}
+	my ($relative) = @_;
+	if (($relative eq __PACKAGE__) || (UNIVERSAL::isa($relative, __PACKAGE__))) {
+		Carp::carp("Test::MockTime::set_relative_time called incorrectly\n");
 	}
 	$offset = $_[-1]; # last argument. might have been called in a OO syntax?
 }
 
-sub set_absolute_time {
-	unless (@_ == 1) {
-		if ($^W) {
-			Carp::carp("Test::MockTime::set_relative_time called incorrectly\n");
-		}
+sub _time {
+	my ($time, $spec) = @_;
+	unless ($time =~ /\A -? \d+ \z/xms) {
+		$spec ||= '%Y-%m-%dT%H:%M:%SZ';
 	}
-	$offset = (CORE::time * -1) + $_[-1]; # last argument. might have been called in a OO syntax?
+	if ($spec) {
+		$time = Time::Piece->strptime($time, $spec)->epoch();
+	}
+	return $time;
+}
+
+sub set_absolute_time {
+	my ($time, $spec) = @_;
+	if (($time eq __PACKAGE__) || (UNIVERSAL::isa($time, __PACKAGE__))) {
+		Carp::carp("Test::MockTime::set_absolute_time called incorrectly\n");
+	}
+	$time = _time($time, $spec);
+	$offset = $time - CORE::time;
 }
 
 sub set_fixed_time {
-	unless (@_ == 1) {
-		if ($^W) {
-			Carp::carp("Test::MockTime::set_relative_time called incorrectly\n");
-		}
+	my ($time, $spec) = @_;
+	if (($time eq __PACKAGE__) || (UNIVERSAL::isa($time, __PACKAGE__))) {
+		Carp::carp("Test::MockTime::set_fixed_time called incorrectly\n");
 	}
-	$fixed = $_[-1]; # last argument. might have been called in a OO syntax?
+	$time = _time($time, $spec);
+	$fixed = $time;
 }
 
 sub time { 

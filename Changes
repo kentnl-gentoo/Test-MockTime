@@ -1,0 +1,6 @@
+CHANGES
+-------
+
+  0.03 - 30 July 2006
+
+      * Patch from Michael Hendricks to allow dates in formats other than seconds since the unix epoch
