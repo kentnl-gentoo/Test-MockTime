@@ -5,29 +5,29 @@ Test::MockTime - Replaces actual time with simulated time
 
 =head1 SYNOPSIS
 
-  use Test::MockTime();
-  Test::MockTime::set_relative_time(-600);
+  use Test::MockTime qw( :all );
+  set_relative_time(-600);
 
   # do some tests depending on time increasing from 600 seconds ago
 
-  Test::MockTime::set_absolute_time(0);
+  set_absolute_time(0);
 
   # do some more tests depending on time starting from the epoch
   # epoch may vary according to platform.  see perlport.
 
-  Test::MockTime::set_fixed_time(CORE::time());
+  set_fixed_time(CORE::time());
 
   # do some more tests depending on time staying at the current actual time
 
-  Test::MockTime::set_absolute_time('1970-01-01T00:00:00Z');
+  set_absolute_time('1970-01-01T00:00:00Z');
 
   # do some tests depending on time starting at Unix epoch time
 
-  Test::MockTime::set_fixed_time('01/01/1970 00:00:00', '%m/%d/%Y %H:%M:%S');
+  set_fixed_time('01/01/1970 00:00:00', '%m/%d/%Y %H:%M:%S');
 
   # do some tests depending on time staying at the Unix epoch time
 
-  Test::MockTime::restore();
+  restore_time();
 
   # resume normal service
 
@@ -112,7 +112,8 @@ C<strptime> format string of "%Y-%m-%dT%H:%M:%SZ" is assumed.
 
 =item restore()
 
-restore the default time handling values
+restore the default time handling values.  C<restore_time> is an alias. When
+exported with the 'all' tag, this subroutine is exported as C<restore_time>.
 
 =head1 AUTHOR
 
@@ -120,7 +121,7 @@ David Dick <ddick@cpan.org>
 
 =head1 PREREQUISITES
 
-None
+Time::Piece 1.08 or greater
 
 =head1 BUGS
 

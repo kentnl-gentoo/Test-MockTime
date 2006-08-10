@@ -4,7 +4,17 @@ use strict;
 use warnings;
 use Carp();
 use Time::Piece();
-our ($VERSION) = '0.03';
+use Exporter 'import';
+our @EXPORT_OK = qw(
+    set_relative_time
+    set_absolute_time
+    set_fixed_time
+    restore_time
+);
+our %EXPORT_TAGS = (
+    'all' => \@EXPORT_OK,
+);
+our ($VERSION) = '0.04';
 our ($offset) = 0;
 our ($fixed) = undef;
 
@@ -79,3 +89,4 @@ sub restore {
 	$offset = 0;
 	$fixed = undef;
 }
+*restore_time = \&restore;
