@@ -1,6 +1,11 @@
 CHANGES
 -------
 
+  0.05 - 28 December 2006
+
+      * Patch from Peter du Marchie van Voorthuysen to give the correct function prototypes for gmtime, localtime and time
+      * now only requiring Time::Piece when using specs
+
   0.04 - 31 July 2006
 
       * Patch from Michael Hendricks to allow importing all subroutines

@@ -3,7 +3,6 @@ package Test::MockTime;
 use strict;
 use warnings;
 use Carp();
-use Time::Piece();
 use Exporter 'import';
 our @EXPORT_OK = qw(
     set_relative_time
@@ -14,7 +13,7 @@ our @EXPORT_OK = qw(
 our %EXPORT_TAGS = (
     'all' => \@EXPORT_OK,
 );
-our ($VERSION) = '0.04';
+our ($VERSION) = '0.05';
 our ($offset) = 0;
 our ($fixed) = undef;
 
@@ -38,6 +37,7 @@ sub _time {
 		$spec ||= '%Y-%m-%dT%H:%M:%SZ';
 	}
 	if ($spec) {
+		require Time::Piece;
 		$time = Time::Piece->strptime($time, $spec)->epoch();
 	}
 	return $time;
@@ -61,7 +61,7 @@ sub set_fixed_time {
 	$fixed = $time;
 }
 
-sub time { 
+sub time() { 
 	if (defined $fixed) {
 		return $fixed;
 	} else {
@@ -69,7 +69,7 @@ sub time {
 	}
 }
 
-sub localtime {
+sub localtime (;$) {
 	my ($time) = @_;
 	unless (defined $time) {
 		$time = Test::MockTime::time();
@@ -77,7 +77,7 @@ sub localtime {
 	return CORE::localtime($time);
 }
 
-sub gmtime {
+sub gmtime (;$) {
 	my ($time) = @_;
 	unless (defined $time) {
 		$time = Test::MockTime::time();
