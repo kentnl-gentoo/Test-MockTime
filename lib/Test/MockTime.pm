@@ -3,7 +3,8 @@ package Test::MockTime;
 use strict;
 use warnings;
 use Carp();
-use Exporter 'import';
+use Exporter();
+*import = \&Exporter::import;
 our @EXPORT_OK = qw(
     set_relative_time
     set_absolute_time
@@ -13,7 +14,7 @@ our @EXPORT_OK = qw(
 our %EXPORT_TAGS = (
     'all' => \@EXPORT_OK,
 );
-our ($VERSION) = '0.05';
+our ($VERSION) = '0.06';
 our ($offset) = 0;
 our ($fixed) = undef;
 
