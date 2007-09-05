@@ -1,6 +1,10 @@
 CHANGES
 -------
 
+  0.07 - 05 September 2007
+
+      * including the missing t/prototypes.t into the MANIFEST so it actually gets included. *ZONK*
+
   0.06 - 04 September 2007
 
       * fixing a call to Exporter to allow Test::MockTime on perl 5.6.1 to run, although still with warnings about prototypes
