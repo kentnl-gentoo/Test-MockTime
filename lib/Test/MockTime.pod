@@ -41,6 +41,8 @@ calls to gmtime,time or localtime.
 
 =head1 Functions
 
+=over
+
 =item set_absolute_time
 
 If given a single, numeric argument, the argument is an absolute time (for
@@ -114,6 +116,8 @@ C<strptime> format string of "%Y-%m-%dT%H:%M:%SZ" is assumed.
 
 restore the default time handling values.  C<restore_time> is an alias. When
 exported with the 'all' tag, this subroutine is exported as C<restore_time>.
+
+=back
 
 =head1 AUTHOR
 
