@@ -3,6 +3,7 @@ Makefile.PL
 Changes
 t/export.t
 t/test.t
+t/pod.t
 t/string-time.t
 t/prototypes.t
 lib/Test/MockTime.pm

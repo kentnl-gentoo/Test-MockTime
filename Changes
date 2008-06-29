@@ -1,6 +1,10 @@
 CHANGES
 -------
 
+  0.09 - 30 June 2008
+
+      * including t/pod.t
+
   0.08 - 30 June 2008
 
       * fixing Pod with a patch from Ansgar Burchardt.
