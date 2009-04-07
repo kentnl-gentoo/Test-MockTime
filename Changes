@@ -1,6 +1,11 @@
 CHANGES
 -------
 
+  0.10 - 08 Apr 2009
+
+      * including t/DateCalc.t and lib/Test/MockTime/DateCalc.pm from Kevin Ryde in an attempt to work with Date::Calc
+      * This changeset may need to be broken out into a separate module, depending on how much work is required on it
+
   0.09 - 30 June 2008
 
       * including t/pod.t
