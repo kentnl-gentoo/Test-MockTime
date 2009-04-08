@@ -1,6 +1,10 @@
 CHANGES
 -------
 
+  0.12 - 09 Apr 2009
+
+      * removing t/DateCalc.t and lib/Test/MockTime/DateCalc.pm to allow Kevin Ryde to maintain a separate module.
+
   0.11 - 08 Apr 2009
 
       * now including it in Manifest file
