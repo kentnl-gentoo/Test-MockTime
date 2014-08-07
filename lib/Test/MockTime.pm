@@ -14,7 +14,7 @@ our @EXPORT_OK = qw(
 our %EXPORT_TAGS = (
     'all' => \@EXPORT_OK,
 );
-our ($VERSION) = '0.12';
+our ($VERSION) = '0.13';
 our ($offset) = 0;
 our ($fixed) = undef;
 

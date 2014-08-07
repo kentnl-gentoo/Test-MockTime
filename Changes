@@ -1,6 +1,11 @@
 CHANGES
 -------
 
+  0.13 - 07 Aug 2014
+
+      * explicit license in META as per RT #97806
+      * included other updates to Makefile.PL details (author, etc)
+
   0.12 - 09 Apr 2009
 
       * removing t/DateCalc.t and lib/Test/MockTime/DateCalc.pm to allow Kevin Ryde to maintain a separate module.
