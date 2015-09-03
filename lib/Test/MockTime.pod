@@ -52,7 +52,7 @@ to reflect this.
 
 for example, in the following code
 
-  Time::Mock::set_absolute_time(0);
+  Test::MockTime::set_absolute_time(0);
   my ($start) = time;
   sleep 2;
   my ($end) = time;
@@ -67,7 +67,7 @@ C<strptime> format string of "%Y-%m-%dT%H:%M:%SZ" is assumed.
 
 for example, in the following code
 
-  Time::Mock::set_absolute_time('1970-01-01T00:00:00Z');
+  Test::MockTime::set_absolute_time('1970-01-01T00:00:00Z');
   my ($start) = time;
   sleep 2;
   my ($end) = time;
@@ -84,7 +84,7 @@ to reflect this.
 for example, in the following code
 
   my ($start) = time;
-  Time::Mock::set_relative_time(-600);
+  Test::MockTime::set_relative_time(-600);
   sleep 600;
   my ($end) = time;
 
@@ -99,7 +99,7 @@ subsequent calls to gmtime, localtime and time will return this value.
 
 for example, in the following code
 
-  Time::Mock::set_fixed_time(time)
+  Test::MockTime::set_fixed_time(time)
   my ($start) = time;
   sleep 3;
   my ($end) = time;

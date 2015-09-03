@@ -1,4 +1,5 @@
 MANIFEST
+README
 Makefile.PL
 Changes
 t/export.t
@@ -8,5 +9,5 @@ t/string-time.t
 t/prototypes.t
 lib/Test/MockTime.pm
 lib/Test/MockTime.pod
-META.yml                                 Module meta-data (added by MakeMaker)
+META.yml                                 Module YAML meta-data (added by MakeMaker)
 META.json                                Module JSON meta-data (added by MakeMaker)

@@ -1,6 +1,10 @@
 CHANGES
 -------
 
+  0.14 - 03 Sep 2015
+
+      * fixing POD code examples as per RT #104088.
+
   0.13 - 07 Aug 2014
 
       * explicit license in META as per RT #97806
