@@ -1,6 +1,10 @@
 CHANGES
 -------
 
+  0.15 - 03 Sep 2015
+
+      * Corrected README.  Merged POD into pm file
+
   0.14 - 03 Sep 2015
 
       * fixing POD code examples as per RT #104088.
